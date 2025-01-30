@@ -3,6 +3,7 @@ import { PrismaClient  } from '@prisma/client'
 import jwt from 'jsonwebtoken' ;
 
 import { JWT_SECRET_CREATOR , JWT_SECRET_ADMIN } from "../config";
+
 const userSecret = JWT_SECRET_CREATOR ;
 const adminSecret = JWT_SECRET_ADMIN ; 
 
