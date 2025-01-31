@@ -7,7 +7,6 @@ const adminSecret = JWT_SECRET_ADMIN ;
 export const authenticateUserJwtUser = (req:Request , res:Response , next: NextFunction)=>{
 
     const authHeader = req.headers.authorization; 
-    
     if(authHeader){
         const token = authHeader.split(" ")[1]; 
         try{
@@ -26,6 +25,7 @@ export const authenticateUserJwtUser = (req:Request , res:Response , next: NextF
                 }
 
                 req.headers.userId = payload.id ; 
+                next() ; 
             })
         }catch(err){
             res.status(401).json({message: "invalid token"})
@@ -40,7 +40,6 @@ export const authenticateUserJwtUser = (req:Request , res:Response , next: NextF
 export const authenticateUserJwtAdmin = (req: Request , res:Response , next: NextFunction)=>{
 
     const authHeader = req.headers.authorization ; 
-
     if(authHeader){
         const token = authHeader.split(" ")[1]; 
         try{
@@ -59,6 +58,7 @@ export const authenticateUserJwtAdmin = (req: Request , res:Response , next: Nex
                 }
 
                 req.headers.userId = payload.id ; 
+                next(); 
             })
         }catch(err){
             res.status(401).json({message: "invalid token"})
