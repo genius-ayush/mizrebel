@@ -7,11 +7,12 @@ const adminSecret = JWT_SECRET_ADMIN ;
 export const authenticateUserJwtUser = (req:Request , res:Response , next: NextFunction)=>{
 
     const authHeader = req.headers.authorization; 
+    
     if(authHeader){
         const token = authHeader.split(" ")[1]; 
         try{
             jwt.verify(token , userSecret , (err , payload)=>{
-
+                
                 if(err){
                     return res.status(403).json({message:"invalid token"}) ;
                 }
@@ -24,7 +25,7 @@ export const authenticateUserJwtUser = (req:Request , res:Response , next: NextF
                     return res.status(403).json({message: "payload is of type string"})
                 }
 
-                req.headers.userId = payload.id ; 
+                req.headers.userId = payload.userId ; 
                 next() ; 
             })
         }catch(err){
@@ -57,7 +58,7 @@ export const authenticateUserJwtAdmin = (req: Request , res:Response , next: Nex
                     return res.status(403).json({message: "payload is of type string"})
                 }
 
-                req.headers.userId = payload.id ; 
+                req.headers.userId = payload.userId ; 
                 next(); 
             })
         }catch(err){

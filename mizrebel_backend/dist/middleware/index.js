@@ -23,7 +23,7 @@ const authenticateUserJwtUser = (req, res, next) => {
                 if (typeof payload == 'string') {
                     return res.status(403).json({ message: "payload is of type string" });
                 }
-                req.headers.userId = payload.id;
+                req.headers.userId = payload.userId;
                 next();
             });
         }
@@ -51,7 +51,7 @@ const authenticateUserJwtAdmin = (req, res, next) => {
                 if (typeof payload == 'string') {
                     return res.status(403).json({ message: "payload is of type string" });
                 }
-                req.headers.userId = payload.id;
+                req.headers.userId = payload.userId;
                 next();
             });
         }
