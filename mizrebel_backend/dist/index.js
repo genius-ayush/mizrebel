@@ -15,7 +15,7 @@ const port = 3000;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use('/auth', auth_1.default); // done 
-app.use('/user', user_1.default);
+app.use('/user', user_1.default); //done
 app.use('/product', product_1.default);
 app.use('/category', category_1.default); // done 
 app.use('/cart', cart_1.default);

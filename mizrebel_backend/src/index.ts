@@ -13,7 +13,7 @@ app.use(cors()) ;
 app.use(express.json()) ; 
 
 app.use('/auth' , authRoutes) ; // done 
-app.use('/user' , userRoutes) ; 
+app.use('/user' , userRoutes) ; //done
 app.use('/product' , productRoutes) ; 
 app.use('/category' , categoryRoutes) ; // done 
 app.use('/cart' , cartRoutes) ; 
