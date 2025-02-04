@@ -23,19 +23,19 @@ function MobileMenu() {
     return (
         <Sheet >
             <SheetTrigger>
-                <AlignJustify className="ml-4 font-thin" />
+                <AlignJustify className="ml-4 font-thin text-[#4A1E1C]" />
             </SheetTrigger>
 
             <SheetContent className="w-full h-display" side="left">
                 <SheetHeader className="flex justify-between h-fit rounded-xl border">
                     <SheetTitle className="flex justify-between border-b  p-2">
                         <SheetClose>
-                            <X className="" size={20} />
+                            <X className="" size={18} />
                         </SheetClose>
                         <Logo />
-                        <div className='flex gap-5 items-center'>
-                            <Search size={20} />
-                            <ShoppingCart size={20} />
+                        <div className='flex gap-2 items-center'>
+                            <Search size={18} />
+                            <ShoppingCart size={18} />
                         </div>
                     </SheetTitle>
 

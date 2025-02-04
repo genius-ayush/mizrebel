@@ -1,8 +1,11 @@
+import ResponsiveCarousel from "./ui/responsiveCarousel"
 
 
 function Categories() {
   return (
-    <div>Categories</div>
+    <div className="mt-5">
+      <ResponsiveCarousel/>
+    </div>
   )
 }
 
