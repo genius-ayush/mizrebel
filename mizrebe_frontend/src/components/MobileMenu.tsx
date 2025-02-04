@@ -16,7 +16,6 @@ import {
 
 import { AlignJustify, Instagram, Linkedin, Search, ShoppingCart, User, X, Youtube } from 'lucide-react'
 import Logo from "./Logo"
-import { Button } from "./ui/button"
 
 
 
