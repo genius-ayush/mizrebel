@@ -2,7 +2,6 @@
 
 import Categories from './Categories'
 import Features from './Features'
-import Footer from './Footer'
 import Header from './Header'
 import Hero from './Hero'
 import TopProducts from './TopProducts'
@@ -16,7 +15,7 @@ function Landing() {
       <Categories/>
       <Features/>
       {/* <BestSellers/> */}
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }

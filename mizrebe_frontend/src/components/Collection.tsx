@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
@@ -12,6 +13,7 @@ interface ProductProps {
   price: number;
 }
 
+
 const categories = [
   { id: "4", name: "New Arrivals" },
   { id: "5", name: "Dresses" },
@@ -20,11 +22,19 @@ const categories = [
   { id: "9", name: "Shop All" },
 ];
 
+
+
+
 function Collection() {
+  const navigate = useNavigate() ; 
   const [products, setProducts] = useState<ProductProps[]>([]);
   const { id } = useParams();
 
   const category = categories.find((cat) => cat.id == id);
+
+  const handleCardClick = (productId : number)=>{
+    navigate(`/collection/${id}/${productId}`)
+}
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,7 +57,7 @@ function Collection() {
 
       <div className="grid gap-2 w-full pl-2 pr-2 md:w-3/5 mx-auto grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
-          <Card key={product.id} className="rounded-none w-full max-w-[300px] mb-12 border-none shadow-none">
+          <Card key={product.id} className="rounded-none w-full max-w-[300px] mb-12 border-none shadow-none" onClick={()=>{ handleCardClick(product.id)}}>
             <img src={product.imageUrl[0]} alt={product.name} className="w-full h-auto shadow-md" />
             <div className="p-2">
               <div className="flex justify-between items-center">

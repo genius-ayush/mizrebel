@@ -3,6 +3,7 @@ import './App.css'
 import Landing from './components/Landing'
 import Shop from './components/Shop'
 import Footer from "./components/Footer";
+import Product from "./components/Product";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Landing/>} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/collection/:id" element={<Shop />} />
+        <Route path="/collection/:id/:productId" element={<Product/>}/>
       </Routes>
     </Router>
     <Footer/>
