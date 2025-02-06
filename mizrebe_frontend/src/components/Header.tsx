@@ -4,10 +4,11 @@ import { ShoppingCart } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import Logo from './Logo';
 import * as React from "react"
-// import Link from "next/link"
-
+import axios from 'axios';
+import { useState , useEffect} from "react";
 import { cn } from "@/lib/utils"
-// import { Icons } from "@/components/icons"
+import { useParams } from 'react-router-dom';
+// import { Navigate, useNavigate } from 'react-router-dom';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -18,46 +19,34 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "New Arrivals",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Dresses",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Tops",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Bottoms",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Two Pieces Sets",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "BestSellers",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-]
+interface categoryProps {
+  id: number ; 
+  name : string ; 
+  createdAt : string ; 
+
+}
+
 
 
 function Header() {
+
+  const [categories, setCategories] = useState <categoryProps[]>([]) 
+  // const navigate = useNavigate() ;
+
+
+  useEffect(()=>{
+
+    const fetchData = async()=>{
+      try{
+        const response = await axios.get("http://localhost:3000/category/categories")
+        setCategories(response.data) ; 
+        console.log(categories)
+      }catch(err){
+        console.error('Error fetchind data' , err)
+      }
+    }
+    fetchData() ;
+  } , [])
   return (
     <>
       <nav className='fixed w-full flex justify-center text-white z-10 '>
@@ -69,14 +58,14 @@ function Header() {
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className='text-[#410606] bg-transparent hover:bg-transparent'>New</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className='text-[#410606] bg-transparent hover:bg-transparent' >New</NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                         <li className="row-span-3">
                           <NavigationMenuLink asChild>
                             <a
                               className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                              href="/"
+                              href="/collections/newArrivals"
                             >
                               {/* <Icons.logo className="h-6 w-6" /> */}
                               <div className="mb-2 mt-4 text-lg font-medium">
@@ -96,14 +85,9 @@ function Header() {
                     <NavigationMenuTrigger className='text-[#410606] bg-transparent'>Shop</NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] text-[#410606]">
-                        {components.map((component) => (
-                          <ListItem
-                            key={component.title}
-                            title={component.title}
-                            href={component.href}
-                          >
-                            {component.description}
-                          </ListItem>
+
+                        {categories.map((category)=>(
+                          <ListItem key={category.id} title={category.name}  href={`/collection/${category.id}`}></ListItem>
                         ))}
                       </ul>
                     </NavigationMenuContent>
