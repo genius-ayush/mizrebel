@@ -10,7 +10,7 @@ import TopProducts from './TopProducts'
 function Landing() {
   return (
     <div>
-      <Header/>
+      <Header bgColor={""}/>
       <Hero/>
       <TopProducts/>
       <Categories/>

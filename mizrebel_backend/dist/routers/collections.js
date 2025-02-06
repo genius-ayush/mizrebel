@@ -16,12 +16,18 @@ const prismaClient = new client_1.PrismaClient;
 router.get("/collections/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
-        const collections = yield prismaClient.product.findMany({
-            where: {
-                categoryId: parseInt(id, 10)
-            }
-        });
-        res.status(200).json(collections);
+        if (parseInt(id, 10) == 9) {
+            const collections = yield prismaClient.product.findMany();
+            res.status(200).json(collections);
+        }
+        else {
+            const collections = yield prismaClient.product.findMany({
+                where: {
+                    categoryId: parseInt(id, 10)
+                }
+            });
+            res.status(200).json(collections);
+        }
     }
     catch (error) {
         res.status(400).json({ message: "unable to fetch collections", error });

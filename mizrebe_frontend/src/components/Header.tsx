@@ -7,7 +7,6 @@ import * as React from "react"
 import axios from 'axios';
 import { useState , useEffect} from "react";
 import { cn } from "@/lib/utils"
-import { useParams } from 'react-router-dom';
 // import { Navigate, useNavigate } from 'react-router-dom';
 import {
   NavigationMenu,
@@ -26,21 +25,20 @@ interface categoryProps {
 
 }
 
+interface headerProps{
+  bgColor : string ; 
+}
 
 
-function Header() {
-
+const Header: React.FC<headerProps> = ({bgColor} ) =>{  
   const [categories, setCategories] = useState <categoryProps[]>([]) 
-  // const navigate = useNavigate() ;
-
-
+  
   useEffect(()=>{
 
     const fetchData = async()=>{
       try{
         const response = await axios.get("http://localhost:3000/category/categories")
         setCategories(response.data) ; 
-        console.log(categories)
       }catch(err){
         console.error('Error fetchind data' , err)
       }
@@ -49,8 +47,8 @@ function Header() {
   } , [])
   return (
     <>
-      <nav className='fixed w-full flex justify-center text-white z-10 '>
-        <div className='flex justify-between md:h-[90px] h-[40px] items-center w-full md:w-3/4 '>
+      <nav className={`fixed w-full flex justify-center text-white z-10 bg-${bgColor}`}>
+        <div className={`flex justify-between md:h-[90px] h-[40px] items-center w-full md:w-3/4 `}>
 
           <div className='flex items-center text-sm gap-5'>
             {/* <a className='md:flex hidden hover:underline hover:cursor-pointer text-[#410606]'>New</a> */}
@@ -58,14 +56,14 @@ function Header() {
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className='text-[#410606] bg-transparent hover:bg-transparent' >New</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className='text-[#410606] bg-transparent hover:bg-transparent' ><a href='/collection/4'>New</a></NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                         <li className="row-span-3">
                           <NavigationMenuLink asChild>
                             <a
                               className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                              href="/collections/newArrivals"
+                              href="/collection/4"
                             >
                               {/* <Icons.logo className="h-6 w-6" /> */}
                               <div className="mb-2 mt-4 text-lg font-medium">

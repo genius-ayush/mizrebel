@@ -16,10 +16,33 @@ import {
 
 import { AlignJustify, Instagram, Linkedin, Search, ShoppingCart, User, X, Youtube } from 'lucide-react'
 import Logo from "./Logo"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
-
+interface categoryProps {
+    id: number ; 
+    name : string ; 
+    createdAt : string ; 
+  
+  }
 
 function MobileMenu() {
+    const [categories , setCategories] = useState<categoryProps[]>([]) ; 
+
+    useEffect(()=>{
+
+        const fetchData = async()=>{
+            try{
+                const response = await axios.get("http://localhost:3000/category/categories") ; 
+                setCategories(response.data) ; 
+                console.log(categories)
+            }catch(error){  
+                console.error("error fetching data") ; 
+            }
+        }
+
+        fetchData() ; 
+    } , [])
     return (
         <Sheet >
             <SheetTrigger>
@@ -42,17 +65,15 @@ function MobileMenu() {
                     <Accordion type="single" collapsible className="w-full p-2">
                         <AccordionItem value="item-1">
                             {/* <AccordionTrigger>New</AccordionTrigger> */}
-                            <div className="text-sm text-left font-medium h-14 flex flex-col justify-center">New</div>
+                            <a className="text-sm text-left font-medium h-14 flex flex-col justify-center" href="/collection/4">New</a>
                             
                         </AccordionItem>
                         <AccordionItem value="item-2">
                             <AccordionTrigger>Shop</AccordionTrigger>
                             <AccordionContent className="text-left ">
-                                <div className="pl-7">New Arrivals</div>
-                                <div className="pl-7">Dresses</div>
-                                <div className="pl-7">Tops</div>
-                                <div className="pl-7">Bottoms</div>
-                                <div className="pl-7">Two pieces</div>
+                                {categories.map((category)=>(
+                                    <a href={`/collection/${category.id}`} className="pl-7 flex flex-row">{category.name}</a>
+                                ))}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-3">
