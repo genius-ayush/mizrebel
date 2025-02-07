@@ -112,7 +112,7 @@ const Header: React.FC<headerProps> = ({bgColor} ) =>{
 
           <div className='flex gap-2 md:gap-5 mr-5'>
             <Search size={22} className='text-[#410606]' />
-            <User className='md:flex hidden text-[#410606]' />
+            <a href='/login'><User className='md:flex hidden text-[#410606]' /></a>
             <ShoppingCart className='text-[#410606]' />
           </div>
 

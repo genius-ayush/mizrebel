@@ -4,6 +4,8 @@ import Landing from './components/Landing'
 import Shop from './components/Shop'
 import Footer from "./components/Footer";
 import Product from "./components/Product";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
 
@@ -13,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing/>} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
         <Route path="/collection/:id" element={<Shop />} />
         <Route path="/collection/:id/:productId" element={<Product/>}/>
       </Routes>

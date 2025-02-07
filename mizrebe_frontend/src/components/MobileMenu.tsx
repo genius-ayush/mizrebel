@@ -83,7 +83,7 @@ function MobileMenu() {
                     </Accordion>
 
                     <div className="flex items-center p-2 gap-2">   
-                    <User size={18}/> 
+                    <a href="/login"><User size={18}/> </a>
                     <div>Login</div>
                     </div>
 
