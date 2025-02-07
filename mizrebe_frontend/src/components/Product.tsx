@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import Header from "./Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 import { Button } from "./ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 
