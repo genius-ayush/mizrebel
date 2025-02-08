@@ -12,7 +12,7 @@ function Hero() {
       Discover the latest trends designed for comfort & elegance.
     </p>
 
-    <Button className="bg-white  rounded-none p-5 text-[#410606]">Show Now</Button>
+    <a href="/collection/9"><Button className="bg-white  rounded-none p-5 text-[#410606]">Shop Now</Button></a>
     
   </div>
     </div>

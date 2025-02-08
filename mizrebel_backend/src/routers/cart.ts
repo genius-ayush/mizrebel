@@ -46,6 +46,7 @@ router.post("/cart" , authenticateUserJwtUser , async(req , res)=>{
     // } catch (error) {
     //     res.status(500).json({err : "failed to add the items to the cart" , details : error})
     // }
+    
 })
 
 
