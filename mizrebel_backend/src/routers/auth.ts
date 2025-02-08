@@ -45,7 +45,7 @@ router.post('/register' , async(req , res)=>{
             )
 
             res.status(201).json({
-                token , message : "user create successfully"
+                token ,userId: user.id , message : "user create successfully"
             })
         }catch(err){
             res.status(550).json({error : "failed to register user" , details : err}) ; 
@@ -76,7 +76,7 @@ router.post('/login' , async(req , res)=>{
             userSecret
         )
 
-        res.status(200).json({token , message:"user logged successfully"})
+        res.status(200).json({token , userId: user.id , message:"user logged successfully"})
 
         }else{
             res.status(401).json("wrong username or password");
@@ -121,7 +121,7 @@ router.post('/adminRegister' , async(req , res)=>{
             )
 
             res.status(201).json({
-                token , message : "Admin create successfully"
+                token , userId: user.id ,  message : "Admin create successfully"
             })
         }catch(err){
             res.status(550).json({error : "failed to register admin" , details : err}) ; 
@@ -152,7 +152,7 @@ router.post('/adminLogin' , async(req , res)=>{
             adminSecret
         )
 
-        res.status(200).json({token , message: "user logged successfully"})
+        res.status(200).json({token ,userId : user.id ,  message: "user logged successfully"})
 
         }else{
             res.status(401).json("wrong username or password");

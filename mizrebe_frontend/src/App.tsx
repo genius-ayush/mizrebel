@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Product from "./components/Product";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Profile from "./components/Profile";
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/collection/:id" element={<Shop />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:userId" element={<Profile />} />
         <Route path="/collection/:id/:productId" element={<Product/>}/>
       </Routes>
     </Router>

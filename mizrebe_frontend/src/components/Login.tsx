@@ -12,16 +12,22 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useState } from "react"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const formSchema = z.object({
 
   email: z.string().email().min(2, { message: "email is too short" }).max(50, { message: "email is too long" }),
-  password: z.string().min(10, { message: "password is too short" })
+  password: z.string().min(2, { message: "password is too short" })
 })
 
 
 
 function Login() {
+
+  const [err , setErr] = useState("") ;
+  const navigate = useNavigate() ; 
 
   const form = useForm<z.infer<typeof formSchema>>({
 
@@ -32,8 +38,27 @@ function Login() {
     }
   })
 
-  function onSubmit(value: z.infer<typeof formSchema>) {
-    console.log(value);
+  const onSubmit = async(value: z.infer<typeof formSchema>)=> {
+    console.log(value.email)
+    console.log(value.password) ; 
+    
+    try{
+      const response = await axios.post("http://localhost:3000/auth/login" , {
+        email : value.email , 
+        password : value.password
+      })
+
+      const data = response.data ; 
+
+      if(data && data.token){
+        localStorage.setItem('token' , data.token);
+        localStorage.setItem('userId' , data.userId)
+        navigate("/") ; 
+      }
+      console.log(data) ; 
+    }catch(error){
+      setErr("Login failed. Please try again.") ; 
+    }
   }
 
 
@@ -84,6 +109,7 @@ function Login() {
         </div>
         <div className="lg:w-1/3 mx-auto pl-5 pr-5">
           <a className="pt-10 underline text-red-950" href="/register">Create account</a>
+          {err && <p className="text-center text-red-500 mt-4">{err}</p>}
         </div>
       </div>
     </>

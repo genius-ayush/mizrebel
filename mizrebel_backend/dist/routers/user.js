@@ -29,8 +29,6 @@ router.get("/users/:id", middleware_1.authenticateUserJwtAdmin, (req, res) => __
 }));
 router.get("/users", middleware_1.authenticateUserJwtUser, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = req.headers.userId;
-    console.log(userId);
-    console.log(typeof (userId));
     if (typeof (userId) == 'number') {
         try {
             const user = yield prismaClient.user.findFirst({

@@ -14,7 +14,7 @@ model User {
   passwordHash String
   role         Role     @default(USER)
   createdAt    DateTime @default(now())
-
+  
   carts        Cart[]
   orders       Order[]
   notifications Notification[]

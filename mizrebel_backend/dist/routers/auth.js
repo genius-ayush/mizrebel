@@ -43,7 +43,7 @@ router.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, functio
                 userId: user.id
             }, userSecret);
             res.status(201).json({
-                token, message: "user create successfully"
+                token, userId: user.id, message: "user create successfully"
             });
         }
         catch (err) {
@@ -64,7 +64,7 @@ router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* 
             const token = jsonwebtoken_1.default.sign({
                 userId: user.id
             }, userSecret);
-            res.status(200).json({ token, message: "user logged successfully" });
+            res.status(200).json({ token, userId: user.id, message: "user logged successfully" });
         }
         else {
             res.status(401).json("wrong username or password");
@@ -98,7 +98,7 @@ router.post('/adminRegister', (req, res) => __awaiter(void 0, void 0, void 0, fu
                 userId: user.id
             }, adminSecret);
             res.status(201).json({
-                token, message: "Admin create successfully"
+                token, userId: user.id, message: "Admin create successfully"
             });
         }
         catch (err) {
@@ -119,7 +119,7 @@ router.post('/adminLogin', (req, res) => __awaiter(void 0, void 0, void 0, funct
             const token = jsonwebtoken_1.default.sign({
                 userId: user.id
             }, adminSecret);
-            res.status(200).json({ token, message: "user logged successfully" });
+            res.status(200).json({ token, userId: user.id, message: "user logged successfully" });
         }
         else {
             res.status(401).json("wrong username or password");

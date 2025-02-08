@@ -17,6 +17,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import { useNavigate } from 'react-router-dom';
 
 interface categoryProps {
   id: number ; 
@@ -32,7 +33,17 @@ interface headerProps{
 
 const Header: React.FC<headerProps> = ({bgColor} ) =>{  
   const [categories, setCategories] = useState <categoryProps[]>([]) 
-  
+  const token = localStorage.getItem("token") ; 
+  const navigate = useNavigate() ; 
+  const handleOnClick = ()=>{
+
+    if(token){
+      navigate("/profile")
+    }else{
+      navigate("/login")
+    }
+    
+  }
   useEffect(()=>{
 
     const fetchData = async()=>{
@@ -112,7 +123,7 @@ const Header: React.FC<headerProps> = ({bgColor} ) =>{
 
           <div className='flex gap-2 md:gap-5 mr-5'>
             <Search size={22} className='text-[#410606]' />
-            <a href='/login'><User className='md:flex hidden text-[#410606]' /></a>
+            <a onClick={handleOnClick} className='text-black flex'><User className='md:flex hidden text-[#410606]' /></a>
             <ShoppingCart className='text-[#410606]' />
           </div>
 

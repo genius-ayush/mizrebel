@@ -25,8 +25,6 @@ router.get("/users/:id" ,authenticateUserJwtAdmin , async(req , res)=>{
 router.get("/users" , authenticateUserJwtUser , async(req , res)=>{
 
     const userId  = req.headers.userId;
-    console.log(userId) ; 
-    console.log(typeof(userId)) ; 
     if(typeof(userId) == 'number'){
         try{
         

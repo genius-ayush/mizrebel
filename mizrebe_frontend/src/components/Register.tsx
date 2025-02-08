@@ -13,6 +13,9 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const formSchema = z.object({
 
@@ -25,6 +28,8 @@ const formSchema = z.object({
 
 function Register() {
 
+  const [err , setErr] = useState(""); 
+  const navigate = useNavigate() ;
   const form = useForm<z.infer<typeof formSchema>>({
 
     resolver: zodResolver(formSchema),
@@ -35,9 +40,24 @@ function Register() {
     }
   })
 
-  function onSubmit(value: z.infer<typeof formSchema>) {
-    {
-      console.log(value)
+  const onSubmit = async(value: z.infer<typeof formSchema>)=> {
+    try{
+      const response = await axios.post("http://localhost:3000/auth/register" , {
+        name : value.name , 
+        email : value.email , 
+        password : value.password
+      })
+
+      let data = response.data ; 
+
+      if(data && data.token){
+        localStorage.setItem('token' , data.token);
+        localStorage.setItem('userId' , data.userId) ; 
+        console.log(data) 
+        navigate("/") ; 
+      }
+    }catch(error){
+      setErr("Login Failed. Plase try again.")
     }
   }
 
@@ -90,12 +110,15 @@ function Register() {
                   </FormItem>
                 )}
               />
+
+              <Button type="submit" className="rounded-none w-full h-12 mb-2">Submit</Button>
             </form>
           </Form>
         </div>
 
         <div className="lg:w-1/3 mx-auto pl-5 pr-5">
           <a className="pt-10 underline text-red-950" href="/login">Login</a>
+          {err && <p className="text-center text-red-500 mt-4">{err}</p>}
         </div>
       </div>
     </>
