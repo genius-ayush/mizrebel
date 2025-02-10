@@ -26,7 +26,7 @@ router.post("/cart", middleware_1.authenticateUserJwtUser, (req, res) => __await
     //     if(typeof(product?.stock) == 'number' && product?.stock < quantity){
     //         res.status(400).json({error:"insuffecient product stock"})
     //     }
-    //     if(typeof userId == 'number'){
+    //     if(typeof userId == 'number'){  
     //         let cart = await prismaClient.cart.findFirst({
     //             where:{userId} , 
     //             include:{
@@ -36,9 +36,9 @@ router.post("/cart", middleware_1.authenticateUserJwtUser, (req, res) => __await
     //             }
     //         })
     //         if(!cart){
-    //             cart = await prismaClient.cart.create({
-    //                 data:{userId}
-    //             })
+    //             // cart = await prismaClient.cart.create({
+    //             //     data:{userId}
+    //             // })
     //         }
     //     }
     //     res.status(500).json("hello world")
