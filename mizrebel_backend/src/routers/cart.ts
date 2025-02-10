@@ -7,45 +7,45 @@ const router = Router() ;
 //add to cart to authtnticate user cart
 router.post("/cart" , authenticateUserJwtUser , async(req , res)=>{
     
-    // const userId = req.headers.userId ; 
-    // const {productId , quantity} = req.body ; 
+    const userId = req.headers.userId ; 
+    const {productId , quantity} = req.body ; 
 
-    // try {
+    try {
         
-    //     const product = await prismaClient.product.findUnique({where:{id: productId}}) ; 
+        const product = await prismaClient.product.findUnique({where:{id: productId}}) ; 
         
-    //     if(!product){
-    //         res.status(404).json({error:"product not found"}) ; 
-    //     }
+        if(!product){
+            res.status(404).json({error:"product not found"}) ; 
+        }
 
-    //     if(typeof(product?.stock) == 'number' && product?.stock < quantity){
-    //         res.status(400).json({error:"insuffecient product stock"})
-    //     }
+        if(typeof(product?.stock) == 'number' && product?.stock < quantity){
+            res.status(400).json({error:"insuffecient product stock"})
+        }
 
-    //     if(typeof userId == 'number'){
-    //         let cart = await prismaClient.cart.findFirst({
-    //             where:{userId} , 
-    //             include:{
-    //                 cartItems:{
-    //                     include:{product:true}
-    //                 }
-    //             }
-    //         })
+        if(typeof userId == 'number'){
+            let cart = await prismaClient.cart.findFirst({
+                where:{userId} , 
+                include:{
+                    cartItems:{
+                        include:{product:true}
+                    }
+                }
+            })
 
-    //         if(!cart){
-    //             cart = await prismaClient.cart.create({
-    //                 data:{userId}
-    //             })
-    //         }
-    //     }
+            if(!cart){
+                // cart = await prismaClient.cart.create({
+                //     data:{userId}
+                // })
+            }
+        }
 
         
         
 
-    //     res.status(500).json("hello world")
-    // } catch (error) {
-    //     res.status(500).json({err : "failed to add the items to the cart" , details : error})
-    // }
+        res.status(500).json("hello world")
+    } catch (error) {
+        res.status(500).json({err : "failed to add the items to the cart" , details : error})
+    }
     
 })
 
