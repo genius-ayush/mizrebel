@@ -1,5 +1,3 @@
-
-
 import Categories from './Categories'
 import Features from './Features'
 import Header from './Header'

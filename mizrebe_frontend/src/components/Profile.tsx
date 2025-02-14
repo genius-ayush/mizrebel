@@ -40,7 +40,7 @@ function Profile() {
         const fetchData = async () => {
 
             try {
-                const response = await axios.get("http://localhost:3000/user/users", {
+                const response = await axios.get("https://backend.mizrebel.com/user/users", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     },

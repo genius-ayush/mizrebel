@@ -39,7 +39,7 @@ function Collection() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/collections/collections/${id}`);
+        const response = await axios.get(`https://backend.mizrebel.com/collections/collections/${id}`);
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching data", error);

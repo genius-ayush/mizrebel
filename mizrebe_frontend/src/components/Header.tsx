@@ -48,7 +48,7 @@ const Header: React.FC<headerProps> = ({bgColor} ) =>{
 
     const fetchData = async()=>{
       try{
-        const response = await axios.get("http://localhost:3000/category/categories")
+        const response = await axios.get("https://backend.mizrebel.com/category/categories")
         setCategories(response.data) ; 
       }catch(err){
         console.error('Error fetchind data' , err)

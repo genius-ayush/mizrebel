@@ -43,7 +43,7 @@ function Login() {
     console.log(value.password) ; 
     
     try{
-      const response = await axios.post("http://localhost:3000/auth/login" , {
+      const response = await axios.post("https://backend.mizrebel.com/auth/login" , {
         email : value.email , 
         password : value.password
       })
