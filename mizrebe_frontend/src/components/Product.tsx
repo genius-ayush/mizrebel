@@ -35,7 +35,7 @@ function Product() {
 
       try {
 
-        const response = await axios.get(`https://backend.mizrebel.com/product/products/${params.productId}`)
+        const response = await axios.get(`https://mizrebel-backend.vercel.app/product/products/${params.productId}`)
         console.log(response.data);
         setProduct(response.data);
       } catch (error) {

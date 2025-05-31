@@ -42,7 +42,7 @@ function Register() {
 
   const onSubmit = async(value: z.infer<typeof formSchema>)=> {
     try{
-      const response = await axios.post("https://backend.mizrebel.com/auth/register" , {
+      const response = await axios.post("https://mizrebel-backend.vercel.app/auth/register" , {
         name : value.name , 
         email : value.email , 
         password : value.password

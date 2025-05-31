@@ -24,7 +24,7 @@ function TopProducts() {
     const fetchData = async()=>{
 
       try{
-        const response = await axios.get("https://backend.mizrebel.com/collections/collections/9")
+        const response = await axios.get("https://mizrebel-backend.vercel.app/collections/collections/9")
         setProducts(response.data) ;
         console.log(products); 
       }catch(error){
